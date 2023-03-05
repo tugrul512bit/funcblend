@@ -11,7 +11,7 @@ double blend1(Func1 f1, Func2 f2,double blendPoint, double x)
     return result;
 }
 
-
+// blending takes narrower or wider distance to reach f1 or f2
 template<typename Func1, typename Func2>
 double blend2(Func1 f1, Func2 f2,double blendPoint, double transitionSmoothness, double x)
 {
