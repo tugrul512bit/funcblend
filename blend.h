@@ -72,6 +72,29 @@ int main()
                         [](double input){ return input * 2.0;},
                         5.0,
                         0.2,
+                        x) << std::endl;          
+                        
+                        
+    std::cout<<"---------------------------------"<<std::endl;                        
+    
+    
+    for(double x = 0;x<10; x+=0.1)
+        std::cout << x<<":::" << blend2(
+                        [](double input){ return input ; },
+                        [](double input){ return input * 2.0;},
+                        5.0,
+                        0.1,
+                        x) << std::endl;                          
+                        
+    std::cout<<"---------------------------------"<<std::endl;                        
+    
+    
+    for(double x = 0;x<10; x+=0.1)
+        std::cout << x<<":::" << blend2(
+                        [](double input){ return input ; },
+                        [](double input){ return input * 2.0;},
+                        5.0,
+                        0.05,
                         x) << std::endl;                            
  return 0;   
 }
