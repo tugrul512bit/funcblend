@@ -30,6 +30,17 @@ double blend3(double f1, double f2,double blendPoint, double transitionSmoothnes
     return result;
 }
 
+// blending with distance for 99.99% approach on real value, (blendPoint-distance,blendPoint+distance)=converged 99.99%
+double blend4(double f1, double f2,double blendPoint, double transitionDistance, double x)
+{
+    double limitDistanceX = 4.95172; // tanhx = 0.9999
+    double scale = 1.075*transitionDistance / limitDistanceX;
+    double mult1 =0.5 + 0.5 * std::tanh((blendPoint - x)/scale);
+    double mult2 =1.0-mult1;
+    double result = f1 * mult1 + f2 * mult2;
+    return result;
+}
+
 int main()
 {
     for(double x = 0;x<10; x+=0.1)
@@ -115,6 +126,17 @@ int main()
                         x*2.0,
                         5.0,
                         0.05,
-                        x) << std::endl;                             
+                        x) << std::endl; 
+    
+    std::cout<<"---------------------------------"<<std::endl;      
+    
+    // converge 99.99% at points x=400(to y=x) and x=600(to y=x*2)
+    for(double x = 0;x<1000; x+=5)
+        std::cout << x<<":::" << blend4(
+                        x,
+                        x*2.0,
+                        500.0,
+                        100.0,
+                        x) << std::endl;   
  return 0;   
 }
