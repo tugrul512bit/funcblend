@@ -31,6 +31,19 @@ double blend3(double f1, double f2,double blendPoint, double transitionSmoothnes
 }
 
 // blending with distance for 99.99% approach on real value, (blendPoint-distance,blendPoint+distance)=converged 99.99%
+/*
+   f1(x)----------\
+                   \
+                    \
+                     \
+                      \
+                      |\
+                      | \
+                      |  \
+                      x   \--------------- f2(x)
+                  <--> <-->
+              distance distance
+*/
 double blend4(double f1, double f2,double blendPoint, double transitionDistance, double x)
 {
     double limitDistanceX = 4.95172; // tanhx = 0.9999
