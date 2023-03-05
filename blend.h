@@ -1,0 +1,32 @@
+#include<iostream>
+#include<cmath>
+
+// function 1 becomes function 2 around blendPoint, computes f(x)
+template<typename Func1, typename Func2>
+double blend1(Func1 f1, Func2 f2,double blendPoint, double x)
+{
+    double mult1 =0.5 + 0.5 * std::tanh(blendPoint - x);
+    double mult2 =1.0-mult1;
+    double result = f1(x) * mult1 + f2(x) * mult2;
+    return result;
+}
+
+int main()
+{
+    for(double x = 0;x<10; x+=0.1)
+        std::cout << x<<":::" << blend1(
+                        [](double input){ return input * input; },
+                        [](double input){ return input + 10.0;},
+                        5.0,
+                        x) << std::endl;
+                        
+    std::cout<<"---------------------------------"<<std::endl;
+    
+    for(double x = 0;x<10; x+=0.1)
+        std::cout << x<<":::" << blend1(
+                        [](double input){ return input ; },
+                        [](double input){ return input * 2.0;},
+                        5.0,
+                        x) << std::endl;    
+ return 0;   
+}
